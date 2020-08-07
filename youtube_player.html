@@ -20,6 +20,7 @@
         xmlHttp.send( null );
         return xmlHttp.responseText;
     }
+	// Future edward if you are seeing this, you might need to change api on permission for this key to no restriction so you can do dev locally
     youtube_request_JSON = JSON.parse(httpGet('https://www.googleapis.com/youtube/v3/playlistItems?maxResults=50&part=snippet&playlistId=PL7ySloZLCGQ9NcoR3jGVCYYxXEvPRc-Fw&key=AIzaSyAOOMLBX_0PGHCP41Io-9Yic84G9TgHdVw'))
 	input = youtube_request_JSON.items.sort(function(a,b){
 		a_time = a.snippet.title.split('.')[0]
@@ -28,6 +29,10 @@
 	})
 	vid_list = document.getElementById('vid-list-inner')
 	for (let i=0; i<input.length; i++){
+		// Check if video is private, which will have no thumbnails in json object. Issue #1
+		if (! ('default' in input[i].snippet.thumbnails)) {
+			continue;
+		}
 		tempstr = `<li>
 			<a href="javascript:void();" onClick="document.getElementById('vid_frame').src='https://www.youtube.com/embed/${input[i].snippet.resourceId.videoId}?autoplay=1'">
 					<span class="vid-thumb"><img width=72 src="${input[i].snippet.thumbnails.default.url}" /></span>
