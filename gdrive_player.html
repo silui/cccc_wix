@@ -25905,7 +25905,7 @@ var Gd_audio_player_manager = createReactClass({
   FolderRetriever: function (e) {
     var srcFolderID = e;
     var temp_elem = document.createElement('html');
-    temp_elem.innerHTML = httpGet("https://cors-anywhere.herokuapp.com/https://drive.google.com/embeddedfolderview?id=" + srcFolderID + "#list"); //-------------------getting info for directory_manager------------------
+    temp_elem.innerHTML = httpGet("https://cors.bridged.cc/https://drive.google.com/embeddedfolderview?id=" + srcFolderID + "#list"); //-------------------getting info for directory_manager------------------
 
     var title_var = temp_elem.getElementsByTagName("title")[0].text; //extract folderTitle
     // ------------------getting info for table---------------------------
